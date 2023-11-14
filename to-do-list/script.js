@@ -1,11 +1,6 @@
 const button = document.querySelector('.btn')
 const input = document.getElementById('inputText')
-const container = document.getElementById('list')
-
-
-
-
-
+const container = document.getElementById('main')
 
 
 
@@ -16,19 +11,69 @@ button.addEventListener('click',() => {
         return
     }
 
-    const todoItem = document.createElement('div')
-    const editButton = document.createElement('button')
-    const deleteButton = document.createElement('button')
+    const todoContainer = document.createElement('div');
+
+
+    const todoItem = document.createElement('p');
     todoItem.textContent = input.value;
 
-    editButton.innerHTML ='<i class="bi bi-pencil-square"></i>'
-    deleteButton.innerHTML ='<i class="bi bi-trash3"></i>'
+    
+     const editButton = createEditButton(todoItem);
+     const deleteButton = createDeleteButton(todoContainer);
+
+ 
+
+    // Append the elements to the container div
+    todoContainer.appendChild(todoItem);
+    todoContainer.appendChild(editButton);
+    todoContainer.appendChild(deleteButton);
+
+    todoContainer.style.borderBottom = '1px solid black'
 
 
-    container.appendChild(todoItem)
-    todoItem.appendChild(editButton)
-    todoItem.appendChild(deleteButton)
+    // Append the container div to the main container
+    container.appendChild(todoContainer);
 
-    input.value= ' '
+    // Clear the input field after adding a todo item
+    input.value = '';
+});
 
-})
+
+function createEditButton(todoItem){
+    const editButton = document.createElement('button');
+    editButton.innerHTML = '<i class="bi bi-pencil-square"></i>';
+    editButton.addEventListener('click', () => {
+        // Create an input field for editing
+        const inputField = document.createElement('input');
+        inputField.value = todoItem.textContent;
+
+        // Replace the text with the input field
+        todoItem.replaceWith(inputField);
+
+        // Focus on the input field
+        inputField.focus();
+
+        // Add blur event listener to save changes on focus loss
+        inputField.addEventListener('blur', () => {
+            todoItem.textContent = inputField.value;
+            inputField.replaceWith(todoItem);
+        });
+    });
+
+    return editButton;
+}
+    
+
+
+function createDeleteButton(todoContainer){
+    const deleteButton = document.createElement('button');
+    deleteButton.innerHTML = '<i class="bi bi-trash3"></i>';
+    
+    deleteButton.addEventListener('click', () => {
+        container.removeChild(todoContainer);
+    });
+    
+    
+    return deleteButton
+
+}
