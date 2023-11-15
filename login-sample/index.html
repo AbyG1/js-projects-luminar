@@ -8,16 +8,22 @@
 </head>
 <body>
    
-    <div class="container-fluid bg-success-subtle " style="height: 100vh">
+    <div class="container-fluid p-md-5 bg-success-subtle " style="height:100vh">
+
         
-        <div class="row justify-content-center" >
-            <div class=" col-4 shadow bg-danger-subtle">
+       
+        <div class="row justify-content-center py-5 " >
+            <div class="col-sm-4 text-center">
+                <img src="login.jpg" alt="login" class="img-fluid">
+            </div>
+
+            <div class=" col-sm-4 shadow ">
                 <h1 class="text-center mb-5 mt-2">login</h1>
                 <form action="">
                     <input type="text" class="form-control mb-3"  placeholder="Username..." id="uname">
-                    <input type="text" class="form-control mb-3" id="formGroupExampleInput" placeholder="Password...">
-                   <div class="text-center mb-2">
-                        <button onclick="login()" class="btn btn-secondary" type="button">login</button>
+                    <input type="password" class="form-control mb-3" id="pword" placeholder="Password...">
+                    <div class="text-center mt-5 mb-1">
+                        <button onclick="login()" class="btn btn-lg btn-primary" type="button">login</button>
                     </div>
                 </form>
             </div>
