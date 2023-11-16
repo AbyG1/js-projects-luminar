@@ -25,14 +25,14 @@
                     <div>
                         <h1 class="text-primary text-center">Employee Details</h1>
                         <form action="">
-                            <input type="text" class="form-control mb-1"  placeholder="Employee Id" id="">
-                            <input type="text" class="form-control mb-1" id="" placeholder="Employee Name">
-                            <input type="text" class="form-control mb-1"  placeholder="Employee Address" id="">
-                            <input type="text" class="form-control mb-1" id="" placeholder="Employee Designation">
-                            <input type="text" class="form-control mb-1"  placeholder="Experience" id="">
-                            <input type="text" class="form-control mb-2" id="" placeholder="Salary">
+                            <input type="number" class="form-control mb-1"  placeholder="Employee Id" id="empId">
+                            <input type="text" class="form-control mb-1" id="empName" placeholder="Employee Name">
+                            <input type="text" class="form-control mb-1"  placeholder="Employee Address" id="empAddress">
+                            <input type="text" class="form-control mb-1" id="empDesign" placeholder="Employee Designation">
+                            <input type="text" class="form-control mb-1"  placeholder="Experience" id="empExper">
+                            <input type="text" class="form-control mb-2" id="empSalary" placeholder="Salary">
                             <div>
-                                <button class="btn btn-outline-primary w-100">Add Employee</button>
+                                <button type='button' class="btn btn-outline-primary w-100" onclick="storeData()">Add Employee</button>
                             </div>
                         </form>
 
@@ -44,7 +44,7 @@
 
                 </div>
                 <div class="col-3 text-center mt-5">
-                    <input type="text" class="form-control mb-2" id="" placeholder="Search Employee">
+                    <input type="text" class="form-control mb-2" id="" placeholder="Search Employee Id">
                     <button class="btn btn-primary"> search</button>
 
                 </div>
