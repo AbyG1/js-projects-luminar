@@ -17,7 +17,7 @@ let experience = document.getElementById('empExper')
 let salary = document.getElementById('empSalary')
 
 
-function storeData() {
+function addEmployee() {
    
     if (
         !id.value.trim() ||
@@ -31,58 +31,73 @@ function storeData() {
         return;
         
     } else {
-        localStorage.setItem("EID",id.value)
-        localStorage.setItem("ENAME",ename.value)
-        localStorage.setItem("EADDRESS",address.value)
-        localStorage.setItem("EDESIGNATION",designation.value)
-        localStorage.setItem("EEXPERIENCE",experience.value)
-        localStorage.setItem("ESALARY",salary.value)
 
-        clearFields()
-        alert(`Employee ${localStorage.getItem('EID')} added successfully.`)
+
+
+        const employee = {
+            id: id.value,
+            name: ename.value,
+            add : address.value,
+            design : designation.value,
+            exp: experience.value,
+            sal : salary.value
+        }
+        
+        if(employee.id in localStorage) {
+            alert("Employee already Exists")
+            document.getElementById('myform').reset()//reset the form
+        } else {
+            localStorage.setItem(employee.id,JSON.stringify(employee))
+    
+
+        alert(`Employee ${employee.id} added successfully.`)
+        document.getElementById('myform').reset()//reset the form
     }
  
 }
-
-function clearFields() {
-    id.value = '';
-    ename.value = '';
-    address.value = '';
-    designation.value = '';
-    experience.value = '';
-    salary.value = '';
 }
 
 
 
-const employeediv = document.createElement('div');
+// function clearFields() {
+//     id.value = '';
+//     ename.value = '';
+//     address.value = '';
+//     designation.value = '';
+//     experience.value = '';
+//     salary.value = '';
+// }
 
 
-const parent = document.querySelector('#show')
 
-const searchId = document.querySelector('#search')
+// const employeediv = document.createElement('div');
 
 
-function showDetails() {
+// const parent = document.querySelector('#show')
 
-    if(searchId.value != localStorage.getItem('EID')){
-        alert("Employee doesnot exist")
-        return
-    }
+// const searchId = document.querySelector('#search')
 
-    employeediv.innerHTML = '<div class="card">' +
-                     '<div class="card-header">Employee</div>' +
-                        '<ul class="list-group list-group-flush">' +
-                            `<li class="list-group-item">ID: ${localStorage.getItem('EID')}</li>` +
-                            `<li class="list-group-item">NAME: ${localStorage.getItem('ENAME')}</li>` +
-                            `<li class="list-group-item">ADDRESS: ${localStorage.getItem('EADDRESS')}</li>` +
-                            `<li class="list-group-item">DESIGNATION: ${localStorage.getItem('EDESIGNATION')}</li>` +
-                            `<li class="list-group-item">EXPERIENCE: ${localStorage.getItem('EEXPERIENCE')}</li>` +
-                            `<li class="list-group-item">SALARY: ${localStorage.getItem('ESALARY')}</li>` +
-                         '</ul>' +
-                '</div>';
 
-    parent.appendChild(employeediv)
+// function showDetails() {
 
-}
+//     if(searchId.value != localStorage.getItem('EID')){
+//         alert("Employee doesnot exist")
+//         return
+//     }
+
+//     employeediv.innerHTML = '<div class="card">' +
+//                      '<div class="card-header">Employee</div>' +
+//                         '<ul class="list-group list-group-flush">' +
+//                             `<li class="list-group-item">ID: ${localStorage.getItem('EID')}</li>` +
+//                             `<li class="list-group-item">NAME: ${localStorage.getItem('ENAME')}</li>` +
+//                             `<li class="list-group-item">ADDRESS: ${localStorage.getItem('EADDRESS')}</li>` +
+//                             `<li class="list-group-item">DESIGNATION: ${localStorage.getItem('EDESIGNATION')}</li>` +
+//                             `<li class="list-group-item">EXPERIENCE: ${localStorage.getItem('EEXPERIENCE')}</li>` +
+//                             `<li class="list-group-item">SALARY: ${localStorage.getItem('ESALARY')}</li>` +
+//                          '</ul>' +
+//                 '</div>';
+
+//     parent.appendChild(employeediv)
+
+// }
 
