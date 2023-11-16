@@ -52,3 +52,37 @@ function clearFields() {
     experience.value = '';
     salary.value = '';
 }
+
+
+
+const employeediv = document.createElement('div');
+
+
+const parent = document.querySelector('#show')
+
+const searchId = document.querySelector('#search')
+
+
+function showDetails() {
+
+    if(searchId.value != localStorage.getItem('EID')){
+        alert("Employee doesnot exist")
+        return
+    }
+
+    employeediv.innerHTML = '<div class="card">' +
+                     '<div class="card-header">Employee</div>' +
+                        '<ul class="list-group list-group-flush">' +
+                            `<li class="list-group-item">ID: ${localStorage.getItem('EID')}</li>` +
+                            `<li class="list-group-item">NAME: ${localStorage.getItem('ENAME')}</li>` +
+                            `<li class="list-group-item">ADDRESS: ${localStorage.getItem('EADDRESS')}</li>` +
+                            `<li class="list-group-item">DESIGNATION: ${localStorage.getItem('EDESIGNATION')}</li>` +
+                            `<li class="list-group-item">EXPERIENCE: ${localStorage.getItem('EEXPERIENCE')}</li>` +
+                            `<li class="list-group-item">SALARY: ${localStorage.getItem('ESALARY')}</li>` +
+                         '</ul>' +
+                '</div>';
+
+    parent.appendChild(employeediv)
+
+}
+
