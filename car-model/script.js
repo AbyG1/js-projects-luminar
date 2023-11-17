@@ -21,9 +21,31 @@ function storeRecord() {
             'price': carPrice.value
         }
         localStorage.setItem(car.key,JSON.stringify(car))
-
+        f1.reset()
 
     }
             
 }
+}
+
+const div = document.getElementById('show')
+const newDiv = document.createElement('div')
+
+
+function retrieveRecord() {
+    const key = document.getElementById('rkey').value 
+    const car = JSON.parse(localStorage.getItem(key))
+
+   
+    newDiv.innerHTML = `
+    <button onclick='closeDetails()' class='btn'><i class="bi bi-x-circle"></i></button>
+    <h4 class='text-center text-primary'>Car Details</h4>
+    <p class='text-primary p-1'>Brand: ${car.brand}</p>
+    <p class='text-primary p-1'>Price: ${car.price}</p>
+    `
+    div.appendChild(newDiv)
+}
+
+function closeDetails() {
+    div.removeChild(newDiv)
 }
