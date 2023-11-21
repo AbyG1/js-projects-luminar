@@ -21,4 +21,26 @@ function createAccount() {
     }
 }
 
+//login 
+
+function login() {
+    let accountNumber = document.getElementById('laccountno').value
+    let password = document.getElementById('lpassword').value
+
+    if(accountNumber.trim() == '' || password.trim() == ''){
+        alert('Fill the fields properly')
+    } else {
+        if(accountNumber in localStorage){
+            let user = JSON.parse(localStorage.getItem(accountNumber))
+            if(password === user.pswd){
+                window.location = './home.html'
+            } else {
+                alert("Incorrect password")
+                document.getElementById('lpassword').value = ''
+            }
+        } else{
+            alert('This account doesnot exist')
+        }
+    }
+}
 
