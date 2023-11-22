@@ -23,16 +23,20 @@ function createAccount() {
 
 //login 
 
-function login() {
-    let accountNumber = document.getElementById('laccountno').value
-    let password = document.getElementById('lpassword').value
+    let accountNumber = document.getElementById('laccountno')
+    let password = document.getElementById('lpassword')
 
-    if(accountNumber.trim() == '' || password.trim() == ''){
+function login() {
+    
+    let accountNumberValue = accountNumber.value
+    let passwordValue = password.value
+    if(accountNumberValue.trim() == '' || passwordValue.trim() == ''){
         alert('Fill the fields properly')
     } else {
-        if(accountNumber in localStorage){
-            let user = JSON.parse(localStorage.getItem(accountNumber))
-            if(password === user.pswd){
+        if(accountNumberValue in localStorage){
+            let user = JSON.parse(localStorage.getItem(accountNumberValue))
+            if(passwordValue === user.pswd){
+                localStorage.setItem('currentUser', JSON.stringify(user.name));
                 window.location = './home.html'
             } else {
                 alert("Incorrect password")
@@ -44,3 +48,8 @@ function login() {
     }
 }
 
+//home
+
+let accountHolder = document.getElementById('u-name')
+let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+accountHolder.textContent = currentUser
