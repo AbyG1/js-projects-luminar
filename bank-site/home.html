@@ -18,7 +18,7 @@
         <div class="col-lg-5 border">
             <h2>Deposit</h2>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="damount" placeholder="Enter the amount">
+                <input type="number" class="form-control" id="damount" placeholder="Enter the amount">
                 <label for="damount">Enter the amount</label>
               </div>
               <div class="form-floating mb-3">
@@ -26,7 +26,10 @@
                 <label for="dPassword">Password</label>
               </div>
               <div class="text-center mb-3">
-                <button class="btn btn-primary">Deposit</button>
+                <button class="btn btn-primary" id="d-amt" onclick="depositAmount()">Deposit</button>
+              </div>
+              <div id="display1">
+
               </div>
 
         </div>
@@ -41,7 +44,10 @@
                 <label for="wPassword">Password</label>
               </div>
               <div class="text-center mb-3">
-                <button class="btn btn-primary">Withdraw</button>
+                <button class="btn btn-primary" id="w-amt" onclick="withdrawAmount()">Withdraw</button>
+              </div>
+              <div id="display2">
+                
               </div>
 
         </div>
