@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+    
+                <h1 class="text-center text-success bg-body-secondary">User Data</h1>
+                <div class="row justify-content-center gy-3 " id="result">
+                    
+                    
+                 
+                </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+
+<script>
+    //ajax api call
+    //1 Create an XMLHttpRequest object
+    const request = new XMLHttpRequest();
+
+    //2 Connect or ApI call
+    request.open('get','https://jsonplaceholder.typicode.com/users')
+
+    //3 send
+    request.send()
+
+    //4 set onreadystatechange
+    request.onreadystatechange=() => {
+        if(request.readyState == 4){
+            if(request.status > 199 && request.status < 300) {
+                console.log(request.responseText);
+                //objects 
+                
+                let arrayUsers = JSON.parse(request.responseText)
+                console.log(arrayUsers);
+                displayArray(arrayUsers)
+
+            } else {
+                alert("Failed to connect to jsonplaceholder")
+            }
+        }
+    }
+
+
+    //4 to display the array of data into the html page
+    
+    function displayArray(array) {
+        for(let users of array){
+             let htmlData = `
+            <div class="col-md-4 col-lg-3">
+                    <div class="card h-100">
+                            <div class="card-header bg-success">
+                                    User Detail - ${users.id}
+                            </div>
+                            <div class="card-body">
+                                
+                                    <p class="card-text text-success">ID: <span class="text-dark">${users.id}</span></p>
+                                    <p class="card-text text-success">Name: <span class="text-dark">${users.name}</span></p>
+                                    <p class="card-text text-success">UserName: <span class="text-dark">${users.username}</span></p>
+                                    <p class="card-text text-success">Email: <span class="text-dark">${users.email}</span></p>
+                                    <p class="card-text mb-0 text-success">Address:</p>
+                                    <p class="card-text mb-0 ms-2 text-success">Street: <span class="text-dark">${users.address.street}</span></p>
+                                    <p class="card-text mb-0 ms-2 text-success">Suit: <span class="text-dark">${users.address.suit}</span></p>
+                                    <p class="card-text mb-0 ms-2 text-success">City: <span class="text-dark">${users.address.city}</span></p>
+                                    <p class="card-text mb-0 ms-2 text-success">Zipcode: <span class="text-dark">${users.address.zipcode}</span></p>
+                                    <p class="card-text mb-0 ms-2 text-success">Geography:</p>
+                                    <p class="card-text mb-0 ms-4 text-success">Latitude: <span class="text-dark">${users.address.geo.lat}</span></p>
+                                    <p class="card-text  ms-4 text-success">Longitude: <span class="text-dark">${users.address.geo.lng}</span></p>
+                                    <p class="card-text text-success">Phone: <span class="text-dark">${users.phone}</span></p>
+                                    <p class="card-text text-success">Website: <span class="text-dark">${users.website}</span></p>
+                                    <p class="card-text mb-0 text-success">Company</p>
+                                    <p class="card-text mb-0 ms-2 text-success">Name: <span class="text-dark">${users.company.name}</span></p>
+                                    <p class="card-text mb-0 ms-2 text-success">Catchphrase: <span class="text-dark">${users.company.catchPhrase}</span></p>
+                                    <p class="card-text mb-0 ms-2 text-success">Field: <span class="text-dark">${users.company.bs}</span></p>
+
+                                    
+                            </div>
+                    </div>
+            </div>
+
+
+
+             `
+             result.innerHTML += htmlData
+            }
+           
+            
+    }
+
+
+
+</script>
+</html>
