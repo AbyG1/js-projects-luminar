@@ -10,4 +10,4 @@ The Repository for Luminar MEARN stack js projects.
 5: Bank site:  https://bank-login-localstorage.netlify.app/ <br>
 6: API data Fetching: https://api-fetching-userdetails.netlify.app/ <br>
 7: Shoppin cart using Api Fetching: https://simpleshoppingsiteonline.netlify.app/<br>
-8 
+8:  Country details using Api fectching: https://searchcountrydeatails.netlifyapp/
