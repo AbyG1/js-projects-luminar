@@ -25,29 +25,29 @@
                         <div class="col-lg-7">
                             <div id="income-container" class="shadow bg-success-subtle mt-5 p-3 rounded-4">
                                 <p class="h3 text-success mb-2">Income</p>
-                                <input type="text" placeholder="Income-description" class="form-control mb-2" >
-                                <input type="number" placeholder="Enter income" class="form-control mb-2">
+                                <input type="text" placeholder="Income-description" class="form-control mb-2" id="income-des">
+                                <input type="number" placeholder="Enter income" class="form-control mb-2" id="income-amt">
                                 <div class="mb-2 text-center">
-                                    <button id="income-btn" class="btn btn-outline-success ">Submit</button>
+                                    <button id="income-btn" class="btn btn-outline-success" onclick="addIncome()">Submit</button>
                                 </div>    
                             </div>
                         </div>
                         <div class="col-lg-7">
                             <div id="income-container" class="shadow bg-danger-subtle mt-5 mb-2 p-3 rounded-4">
                                 <p class="h3 text-danger mb-2">Expenses </p>
-                                <input type="text" placeholder="Expense type" class="form-control mb-2" >
-                                <input type="number" placeholder="Enter income" class="form-control mb-2">
+                                <input type="text" placeholder="Expense type" class="form-control mb-2" id="exp-type">
+                                <input type="number" placeholder="Enter income" class="form-control mb-2" id="exp-amt">
                                 <div class="mb-2 text-center">
-                                    <button id="income-btn" class="btn btn-outline-danger ">Submit</button>
+                                    <button id="expense-btn" class="btn btn-outline-danger">Submit</button>
                                 </div>    
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5  d-flex align-items-center justify-content-center justify-content-lg-start ">
-                    <div id="balance-container" class="rounded-4 shadow" style="background-color: #35D3BB;">
+                    <div id="balance-container" class="rounded-4 shadow m-2" style="background-color: #35D3BB;">
                         <h3 class="display-5 text-center p-4">Your Balance</h3>
-                        <p class="p-5 text-center" > <span id="balance-amount" class="display-5"></span>Rs</p>
+                        <p class="p-5 text-center" > <span id="balance-amount" class="display-2"></span> Rs</p>
 
                     </div>
                 </div>
@@ -57,7 +57,7 @@
             <div class="row py-5">
                 <div class="col">
                     <h3>Income</h3>
-                    <table class="table table-striped table-hover table-success table-bordered">
+                    <table class="table table-striped table-hover table-success table-bordered" id="income-table">
                         <thead>
                             <tr>
                               <th scope="col">Type</th>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col">
                     <h3>Expense</h3>
-                    <table class="table table-striped table-hover table-danger table-bordered">
+                    <table class="table table-striped table-hover table-danger table-bordered" id="expense-table">
                         <thead>
                             <tr>
                               <th scope="col">Type</th>

@@ -81,9 +81,60 @@ function login(){
 
 //home
 
+
+
 let displayName =document.getElementById('name')
 displayName.textContent = localStorage.getItem('dname')
 
 function logoutUser() {
     window.location='index.html'
+    localStorage.removeItem('balance');
+    localStorage.removeItem('incomeTable');
 }
+
+let balance = 0;
+let balanceValue = document.getElementById("balance-amount")
+balanceValue.textContent = balance;
+
+
+function addIncome() {
+    let description = document.getElementById('income-des').value
+    let incomeAmount = document.getElementById('income-amt').value
+    if(description.trim() == '' || incomeAmount.trim() == ''){
+        alert("Enter all the details")
+    } else {
+        incomeAmount = parseFloat(incomeAmount)
+        balance = balance + incomeAmount;
+        updateBalance(balance)
+        UpdateIncomeTable(description,incomeAmount,balance)
+        document.getElementById('income-amt').value = ''
+        localStorage.setItem('balance', balance);
+    }
+    
+}
+
+function updateBalance(balance){
+    balanceValue.textContent = balance
+}
+let incTable = document.getElementById('income-table');
+
+
+function UpdateIncomeTable(des,inc,bal){
+    
+    let tableContent = ` <tr>
+                                <td>${des}</td>   
+                                <td>${inc}</td>
+                                <td>${bal}</td>
+                        </tr>
+    
+    `
+    incTable.innerHTML += tableContent;
+    localStorage.setItem('incomeTable', incTable.innerHTML);
+}
+
+window.addEventListener('load', () => {
+   
+    incTable.innerHTML += localStorage.getItem('incomeTable') || '';
+    let balanceValue = document.getElementById("balance-amount")
+    balanceValue.textContent = localStorage.getItem('balance')
+});
