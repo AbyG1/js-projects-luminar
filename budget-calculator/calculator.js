@@ -27,7 +27,7 @@ function registerUser() {
             registerPassword.value = ''
         } else {
 
-            localStorage.setItem(userName,JSON.stringify(user))
+            localStorage.setItem(user.userName,JSON.stringify(user))
             registerName.value = ''
             registerMail.value = ''
             registerPassword.value = ''
@@ -40,4 +40,34 @@ function registerUser() {
         
     }
     
+}
+
+//login
+
+let loginName = document.querySelector('#l-username')
+let loginPassword = document.querySelector('#l-password')
+
+
+    function login(){
+    let username = loginName.value;
+    let password = loginPassword.value;
+    if(username in localStorage){
+        let user = JSON.parse(localStorage.getItem(username))
+        console.log(user)
+        if(password === user.userPassword){
+            alert("login successful")
+            window.location="home.html"
+        } else {
+            alert("incorrect password")
+            loginPassword.value = '';
+        }
+
+    } else {
+        alert("Account does not exist")
+        loginName.value = ''
+        loginPassword.value = ''
+        return
+    }
+    
+
 }
