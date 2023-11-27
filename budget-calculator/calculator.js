@@ -17,7 +17,7 @@ function registerUser() {
     }
  
 
-    if(userName.trim() == '' || userMail.trim() == '' || userPassword.trim() == ''){
+    if(userName.trim() == '' || userMail.trim() == '' || userPassword == ''){
         alert("Enter all details properly")
     } else {
         if(userName in localStorage){
@@ -44,30 +44,46 @@ function registerUser() {
 
 //login
 
+
+
 let loginName = document.querySelector('#l-username')
 let loginPassword = document.querySelector('#l-password')
 
 
-    function login(){
+function login(){
     let username = loginName.value;
     let password = loginPassword.value;
-    if(username in localStorage){
-        let user = JSON.parse(localStorage.getItem(username))
-        console.log(user)
-        if(password === user.userPassword){
-            alert("login successful")
-            window.location="home.html"
-        } else {
-            alert("incorrect password")
-            loginPassword.value = '';
-        }
-
+    if(username.trim() == '' || password == ''){
+        alert("Enter all details properly")
     } else {
-        alert("Account does not exist")
-        loginName.value = ''
-        loginPassword.value = ''
-        return
-    }
-    
+            if(username in localStorage){
+                let user = JSON.parse(localStorage.getItem(username))
+                console.log(user)
+                if(password === user.userPassword){
+                    alert("login successful")
+                    localStorage.setItem('dname',user.userName)
+                    window.location="home.html"
+                } else {
+                    alert("incorrect password")
+                    loginPassword.value = '';
+                }
 
+            } else {
+                alert("Account does not exist")
+                loginName.value = ''
+                loginPassword.value = ''
+                
+            }
+        
+
+    }
+}
+
+//home
+
+let displayName =document.getElementById('name')
+displayName.textContent = localStorage.getItem('dname')
+
+function logoutUser() {
+    window.location='index.html'
 }
