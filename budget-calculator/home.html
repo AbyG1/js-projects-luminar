@@ -38,7 +38,7 @@
                                 <input type="text" placeholder="Expense type" class="form-control mb-2" id="exp-type">
                                 <input type="number" placeholder="Enter income" class="form-control mb-2" id="exp-amt">
                                 <div class="mb-2 text-center">
-                                    <button id="expense-btn" class="btn btn-outline-danger">Submit</button>
+                                    <button id="expense-btn" class="btn btn-outline-danger" onclick="reduceExpense()">Submit</button>
                                 </div>    
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                               <th scope="col">Balance</th>
                             </tr>
                         </thead>
-                        
+                        <tbody id="income-table-body"></tbody>
                     </table>
                 </div>
                 <div class="col">
@@ -78,7 +78,7 @@
                               <th scope="col">Balance</th>
                             </tr>
                         </thead>
-                        
+                        <tbody id="expense-table-body"></tbody>
                     </table>
                 </div>
             </div>

@@ -51,7 +51,7 @@ let loginPassword = document.querySelector('#l-password')
 
 
 function login(){
-    let username = loginName.value;
+    let username = loginName.value.toLowerCase();
     let password = loginPassword.value;
     if(username.trim() == '' || password == ''){
         alert("Enter all details properly")
@@ -82,59 +82,86 @@ function login(){
 //home
 
 
-
-let displayName =document.getElementById('name')
-displayName.textContent = localStorage.getItem('dname')
+let displayName = document.getElementById('name');
+displayName.textContent = localStorage.getItem('dname');
 
 function logoutUser() {
-    window.location='index.html'
+    window.location = 'index.html';
     localStorage.removeItem('balance');
     localStorage.removeItem('incomeTable');
+    localStorage.removeItem('expenseTable'); 
 }
 
 let balance = 0;
-let balanceValue = document.getElementById("balance-amount")
+let balanceValue = document.getElementById("balance-amount");
 balanceValue.textContent = balance;
 
-
 function addIncome() {
-    let description = document.getElementById('income-des').value
-    let incomeAmount = document.getElementById('income-amt').value
-    if(description.trim() == '' || incomeAmount.trim() == ''){
-        alert("Enter all the details")
+    let description = document.getElementById('income-des').value;
+    let incomeAmount = document.getElementById('income-amt').value;
+
+    if (description.trim() == '' || incomeAmount.trim() == '') {
+        alert("Enter all the details");
     } else {
-        incomeAmount = parseFloat(incomeAmount)
+        incomeAmount = parseFloat(incomeAmount);
         balance = balance + incomeAmount;
-        updateBalance(balance)
-        UpdateIncomeTable(description,incomeAmount,balance)
-        document.getElementById('income-amt').value = ''
-        localStorage.setItem('balance', balance);
+        updateBalance(balance);
+        UpdateIncomeTable(description, incomeAmount, balance);
+        document.getElementById('income-amt').value = '';
+     
     }
-    
 }
 
-function updateBalance(balance){
-    balanceValue.textContent = balance
+function reduceExpense() {
+    let description = document.getElementById('exp-type').value;
+    let expenseAmount = document.getElementById('exp-amt').value;
+
+    if (description.trim() == '' || expenseAmount.trim() == '') {
+        alert("Enter all the details");
+    } else {
+        expenseAmount = parseFloat(expenseAmount);
+        balance = balance - expenseAmount; 
+        updateBalance(balance);
+        UpdateExpenseTable(description, expenseAmount, balance); 
+        document.getElementById('exp-amt').value = '';
+        
+    }
 }
-let incTable = document.getElementById('income-table');
 
-
-function UpdateIncomeTable(des,inc,bal){
+ function updateBalance(newBalance) {
+    localStorage.setItem('balance', newBalance);
+     balanceValue.textContent = newBalance;
     
-    let tableContent = ` <tr>
+ }
+
+let incTableBody = document.getElementById('income-table-body');
+let decTableBody = document.getElementById('expense-table-body');
+
+function UpdateIncomeTable(des, inc, bal) {
+    let tableContent = `<tr>
                                 <td>${des}</td>   
                                 <td>${inc}</td>
                                 <td>${bal}</td>
-                        </tr>
-    
-    `
-    incTable.innerHTML += tableContent;
-    localStorage.setItem('incomeTable', incTable.innerHTML);
+                        </tr>`;
+    incTableBody.innerHTML += tableContent;
+    localStorage.setItem('incomeTable', incTableBody.innerHTML);
+}
+
+function UpdateExpenseTable(des, inc, bal) {
+    let tableContent = `<tr>
+                                <td>${des}</td>   
+                                <td>${inc}</td>
+                                <td>${bal}</td>
+                        </tr>`;
+    decTableBody.innerHTML += tableContent;
+    localStorage.setItem('expenseTable', decTableBody.innerHTML);
 }
 
 window.addEventListener('load', () => {
-   
-    incTable.innerHTML += localStorage.getItem('incomeTable') || '';
-    let balanceValue = document.getElementById("balance-amount")
-    balanceValue.textContent = localStorage.getItem('balance')
+    let storedBalance = localStorage.getItem('balance');
+    balance = storedBalance ? parseFloat(storedBalance) : 0; 
+    balanceValue.textContent = balance;
+
+    incTableBody.innerHTML = localStorage.getItem('incomeTable') || '';
+    decTableBody.innerHTML = localStorage.getItem('expenseTable') || '';
 });
