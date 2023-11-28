@@ -6,7 +6,7 @@ let registerPassword = document.querySelector('#r-password')
 
 
 function registerUser() {
-    let userName = registerName.value.toLowerCase()
+    let userName = registerName.value
     let userMail = registerMail.value
     let userPassword = registerPassword.value
 
@@ -27,7 +27,7 @@ function registerUser() {
             registerPassword.value = ''
         } else {
 
-            localStorage.setItem(user.userName,JSON.stringify(user))
+            localStorage.setItem(userName,JSON.stringify(user))
             registerName.value = ''
             registerMail.value = ''
             registerPassword.value = ''
@@ -51,7 +51,7 @@ let loginPassword = document.querySelector('#l-password')
 
 
 function login(){
-    let username = loginName.value.toLowerCase();
+    let username = loginName.value;
     let password = loginPassword.value;
     if(username.trim() == '' || password == ''){
         alert("Enter all details properly")
@@ -120,10 +120,15 @@ function reduceExpense() {
         alert("Enter all the details");
     } else {
         expenseAmount = parseFloat(expenseAmount);
-        balance = balance - expenseAmount; 
-        updateBalance(balance);
-        UpdateExpenseTable(description, expenseAmount, balance); 
-        document.getElementById('exp-amt').value = '';
+        if(expenseAmount > balance){
+            alert("Insufficent amount")
+        } else {
+            balance = balance - expenseAmount; 
+            updateBalance(balance);
+            UpdateExpenseTable(description, expenseAmount, balance); 
+            document.getElementById('exp-amt').value = '';
+        }
+        
         
     }
 }
