@@ -36,8 +36,10 @@
     <script>
          function movieDetails() {
                 let movie = document.getElementById('text-box').value;
-
-                fetch(`https://www.omdbapi.com/?t=${movie}&apikey=870299b0`)
+                if(movie == ''){
+                    alert("Enter movie name")
+                } else {
+                    fetch(`https://www.omdbapi.com/?t=${movie}&apikey=870299b0`)
                     .then(response => response.json())
                     .then(data => {
                         displayMovieDetails(data);
@@ -46,6 +48,9 @@
                     .catch(error => {
                         alert('Unable to fetch data');
                     }); 
+                }
+
+                
                 }
 
         function displayMovieDetails(data) {
